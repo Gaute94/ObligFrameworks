@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Home</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Online book delivery site</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="Book">Books</a>
+                <a class="nav-item nav-link" href="Author">Authors</a>
+                <a class="nav-item nav-link" href="AddShipping">Register</a>
+                <a class="nav-item nav-link" href="AddOrder">Order</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div th:if="${!shippings.empty}">
+    <table class="table col-sm-6">
+        <tr>
+            <th>Order ID</th>
+            <td>Date</td>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Postal Code</th>
+            <th></th>
+        </tr>
+        <tbody>
+         <td th:text="${order.id}"></td>
+            <td th:text="${order.date}"></td>
+            <td th:text="${order.shipping.firstName}"></td>
+            <td th:text="${order.shipping.lastName}"></td>
+            <td th:text="${order.shipping.address}"></td>
+            <td th:text="${order.shipping.postalCode}"></td>
+
+
+
+        </tbody>
+    </table>
+</div>
+
+<a href="Author">Author!!</a>
+
+</body>
+</html>

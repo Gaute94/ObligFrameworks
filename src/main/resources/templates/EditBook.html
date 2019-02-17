@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>EditBook</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Online book delivery site</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Features</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
+                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h3 class="text-primary"> Spring Boot demo  </h3>
+    <div class="col-sm-6  my-5">
+        <h5 class="text-primary">Edit Book </h5>
+        <form th:action="@{/saveBook}" th:modelAttribute="book" method="post">
+            <input type="hidden" th:value="${book.isbn}" name="isbn">
+            <div class="form-group">
+                <input type="text"   name="title" class="form-control" th:value="${book.title}">
+            </div>
+            <div class="form-group">
+                <input type="text"   name="releaseYear" class="form-control" th:value="${book.releaseYear}">
+            </div>
+            <div class="form-group">
+            <input type="text"   name="quantity" class="form-control" th:value="${book.quantity}">
+            </div>
+            <select multiple id="author" name="authors" >
+                <option th:each="author : ${authors}" th:value="${author.id}" th:selected="${book.authors.contains(author)}" th:text="${author.firstName}+${author.lastName}"></option>
+            </select>
+            <select id="category" name="category" >
+                <option th:each="category : ${categories}" th:value="${category.name}" th:selected="${book.category == category}" th:text="${category.name}"></option>
+            </select>
+            <button class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+<a href="Author">Author!!</a>
+
+</body>
+</html>
