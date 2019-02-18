@@ -24,13 +24,13 @@ public class Seeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Category fantasy = new Category("Fantasy");
+        /*Category fantasy = new Category("Fantasy");
         categoryRepository.save(fantasy);
         Category thriller = new Category("Thriller");
         categoryRepository.save(thriller);
         Book book = new Book(1234567891011L, "Harry Potter", "1998", 1, fantasy);
         bookRepository.save(book);
         Author author = new Author("Gaute", "Kvalheim", "8/10");
-        authorRepository.save(author);
+        authorRepository.save(author);*/
     }
 }

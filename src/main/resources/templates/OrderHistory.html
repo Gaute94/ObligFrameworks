@@ -8,24 +8,15 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">Online book delivery site</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="Book">Books</a>
-                <a class="nav-item nav-link" href="Author">Authors</a>
-                <a class="nav-item nav-link" href="AddShipping">Register</a>
-                <a class="nav-item nav-link" href="AddOrder">Order</a>
-            </div>
-        </div>
-    </div>
-</nav>
+<div th:replace="Fragments/fragments::header"></div>
+<form th:action="@{/OrderHistory}" method="post">
+    <select id="shipping" name="shipping" >
+        <option th:each="shipping : ${shippings}" th:value="${shipping.id}" th:text="${shipping.firstName}+${' '}+${shipping.lastName}+${', '}+${shipping.address}+${', '}+${shipping.postalCode}"></option>
+    </select>
+    <button class="btn btn-success">View Orders</button>
+</form>
+
+
 <div th:if="${!orders.isEmpty()}">
     <table class="table col-sm-6">
         <tr>

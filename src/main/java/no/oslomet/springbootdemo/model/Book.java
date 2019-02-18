@@ -4,6 +4,7 @@ package no.oslomet.springbootdemo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @NotNull
     private Category category;
 
-    @ManyToMany
-    @JoinTable
+    @ManyToMany(mappedBy = "books")
     private List<Order> orders = new ArrayList<>();
 
     public Book(){
