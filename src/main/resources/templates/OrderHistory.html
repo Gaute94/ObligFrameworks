@@ -9,34 +9,40 @@
 <body>
 
 <div th:replace="Fragments/fragments::header"></div>
-<form th:action="@{/OrderHistory}" method="post">
-    <select id="shipping" name="shipping" >
-        <option th:each="shipping : ${shippings}" th:value="${shipping.id}" th:text="${shipping.firstName}+${' '}+${shipping.lastName}+${', '}+${shipping.address}+${', '}+${shipping.postalCode}"></option>
-    </select>
-    <button class="btn btn-success">View Orders</button>
-</form>
+<div class="container pt-5" >
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form th:action="@{/OrderHistory}" method="post">
+                <select id="shipping" name="shipping" style="width:100%">
+                    <option th:each="shipping : ${shippings}" th:value="${shipping.id}" th:text="${shipping.firstName}+${' '}+${shipping.lastName}+${', '}+${shipping.address}+${', '}+${shipping.postalCode}"></option>
+                </select>
+                <button class="btn btn-success" style="width:100%; margin-top:10px;">View Orders</button>
+            </form>
+        </div>
+    </div>
+        <div class="row pt-5">
+            <div class="col-8 offset-2">
+                <div th:if="${!orders.isEmpty()}">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Date</th>
+                            <th>Book Title</th>
+                            <th></th>
+                        </tr>
+                        <tbody>
+                        <tr th:each="order : ${orders}">
+                            <td th:text="${order.date}"></td>
+                            <td> <span th:each="book : ${order.books}" th:text="${book.title}+${', '}"></span></td>
+                            <td>
+                                <a class="btn btn-warning" th:href="@{/ShippingInfo/{id}(id=${order.id})}">View Info</a>
+                            </td>
+                        </tr>
 
-
-<div th:if="${!orders.isEmpty()}">
-    <table class="table col-sm-6">
-        <tr>
-            <th>Date</th>
-            <th>Book Title</th>
-        </tr>
-        <tbody>
-        <tr th:each="order : ${orders}">
-            <td th:text="${order.date}"></td>
-            <td th:each="book : ${order.books}" th:text="${book.title}"></td>
-            <td>
-                <a class="btn btn-warning" th:href="@{/ShippingInfo/{id}(id=${order.id})}">View Info</a>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 </div>
-
-<a href="Author">Author!!</a>
-
 </body>
 </html>

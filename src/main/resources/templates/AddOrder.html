@@ -10,27 +10,27 @@
 
 <div th:replace="Fragments/fragments::header"></div>
 
-<div class="container">
-    <h3 class="text-primary"> Spring Boot demo  </h3>
-    <div class="col-sm-6  my-5">
-        <h5 class="text-primary">Register New Shipping Address </h5>
-        <form th:action="@{/saveOrder}" th:modelAttribute="shipping" method="post">
-            <h2>Select Shipping Address</h2>
-            <select id="shipping" name="shipping" >
-                <option th:each="shipping : ${shippings}" th:value="${shipping.id}" th:text="${shipping.firstName}+${' '}+${shipping.lastName}+${', '}+${shipping.address}+${', '}+${shipping.postalCode}"></option>
-            </select>
-            <select multiple id="book" name="books">
-                <option th:each="book : ${books}" th:value="${book.isbn}" th:text="${book.title}"></option>
-            </select>
-            <input type="hidden" name="date" th:value="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">
-            <button class="btn btn-success">Save</button>
-        </form>
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h5 class="text-primary">Order </h5>
+            <form th:action="@{/saveOrder}" th:modelAttribute="shipping" method="post">
+                <div style="display:inline-block; padding-bottom:5px;">Select Shipping Address</div>
+                <select id="shipping" name="shipping" style="width:100%; padding-bottom:5px;">
+                    <option th:each="shipping : ${shippings}" th:value="${shipping.id}" th:text="${shipping.firstName}+${' '}+${shipping.lastName}+${', '}+${shipping.address}+${', '}+${shipping.postalCode}"></option>
+                </select>
+                <div style="display:inline-block; padding-bottom:5px;">Select Book(s)</div>
+                <select multiple id="book" name="books" style="width:100%;">
+                    <option th:each="book : ${books}" th:value="${book.isbn}" th:text="${book.title}"></option>
+                </select>
+                <input type="hidden" name="date" th:value="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">
+                <button class="btn btn-success" style="width:100%;">Save</button>
+            </form>
+            <div style="padding-top:5px;">Haven't registered an address yet?</div>
+            <a href="AddShipping" class="btn btn-link p-0">Register here!</a>
+        </div>
     </div>
 </div>
 </div>
-</div>
-
-<a href="Author">Author!!</a>
-
 </body>
 </html>

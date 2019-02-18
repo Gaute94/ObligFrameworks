@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Home</title>
+
 </head>
 <body>
-$END$
+
+<div th:replace="Fragments/fragments::header"></div>
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-3">
+            <h5 class="text-primary pb-2">Register New Category </h5>
+            <form th:action="@{/saveCategory}" th:modelAttribute="category" method="post">
+                <div class="form-group">
+                    <input type="text"   name="Name" class="form-control" placeholder="Name" th:required="required">
+                </div>
+                <button class="btn btn-success" style="width:100%">Save</button>
+            </form>
+        </div>
+        <div class="col-9">
+            <div th:if="${categories.empty}" style="width:100%; text-align:center; margin-top:100px">There are currently no categories registered.</div>
+            <div th:if="${!categories.empty}">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="category : ${categories}">
+                        <td th:text="${category.name}"></td>
+                        <td>
+                            <a class="btn btn-outline-danger" style="width:100%" th:href="@{/deleteCategory/{id}(id=${category.name})}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

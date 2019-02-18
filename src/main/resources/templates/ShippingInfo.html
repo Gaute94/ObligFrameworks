@@ -9,33 +9,38 @@
 <body>
 
 <div th:replace="Fragments/fragments::header"></div>
-
-<div th:if="${!shippings.empty}">
-    <table class="table col-sm-6">
-        <tr>
-            <th>Order ID</th>
-            <td>Date</td>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Address</th>
-            <th>Postal Code</th>
-            <th></th>
-        </tr>
-        <tbody>
-         <td th:text="${order.id}"></td>
-            <td th:text="${order.date}"></td>
-            <td th:text="${order.shipping.firstName}"></td>
-            <td th:text="${order.shipping.lastName}"></td>
-            <td th:text="${order.shipping.address}"></td>
-            <td th:text="${order.shipping.postalCode}"></td>
-
-
-
-        </tbody>
-    </table>
+<div class="container pt-5" >
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div th:if="${!shippings.empty}">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Postal Code</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                     <td th:text="${order.id}"></td>
+                        <td th:text="${order.date}"></td>
+                        <td th:text="${order.shipping.firstName}"></td>
+                        <td th:text="${order.shipping.lastName}"></td>
+                        <td th:text="${order.shipping.address}"></td>
+                        <td th:text="${order.shipping.postalCode}"></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <a href="/OrderHistory" class="btn btn-primary">Back</a>
+        </div>
+    </div>
 </div>
-
-<a href="Author">Author!!</a>
-
 </body>
 </html>

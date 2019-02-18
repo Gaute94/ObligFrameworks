@@ -55,6 +55,14 @@ public class HomeController {
         return "Book";
     }
 
+    @GetMapping("/Category")
+    public String listCategories(Model model){
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+        return "Category";
+    }
+
+
     @GetMapping("/Author")
     public String listAuthors(Model model){
         List<Author> authors = authorRepository.findAll();
@@ -132,6 +140,12 @@ public class HomeController {
         return "redirect:/Book";
     }
 
+    @PostMapping("/saveCategory")
+    public String save(@ModelAttribute("category") Category category){
+        categoryRepository.save(category);
+        return "redirect:/Category";
+    }
+
     @PostMapping("/saveAuthor")
     public String save(@ModelAttribute("author") Author author ){
         authorRepository.save(author);
@@ -147,7 +161,7 @@ public class HomeController {
     @PostMapping("/saveOrder")
     public String save(@ModelAttribute("order") Order order){
         orderRepository.save(order);
-        return "redirect:/Author";
+        return "redirect:/OrderHistory";
     }
 
     @GetMapping("/edit/{id}")
@@ -171,6 +185,13 @@ public class HomeController {
         authorRepository.deleteById(id);
         return "redirect:/Author";
     }
+
+    @GetMapping("/deleteCategory/{id}")
+    public String deleteCategory(@PathVariable String id){
+        categoryRepository.deleteById(id);
+        return "redirect:/Category";
+    }
+
 
     @GetMapping("/EditAuthor/{id}")
     public String editAuthor(@PathVariable("id") String id,Model model ){
