@@ -12,6 +12,7 @@
 <div class="container pt-5" >
     <div class="row">
         <div class="col-8 offset-2">
+            <h5 class="text-primary pb-2">Order History</h5>
             <form th:action="@{/OrderHistory}" method="post">
                 <select id="shipping" name="shipping" style="width:100%">
                     <option th:each="shipping : ${shippings}" th:value="${shipping.id}" th:text="${shipping.firstName}+${' '}+${shipping.lastName}+${', '}+${shipping.address}+${', '}+${shipping.postalCode}"></option>
@@ -24,17 +25,19 @@
             <div class="col-8 offset-2">
                 <div th:if="${!orders.isEmpty()}">
                     <table class="table table-bordered">
+                        <thead class="thead-light">
                         <tr>
                             <th>Date</th>
                             <th>Book Title</th>
                             <th></th>
                         </tr>
+                        </thead>
                         <tbody>
                         <tr th:each="order : ${orders}">
                             <td th:text="${order.date}"></td>
                             <td> <span th:each="book : ${order.books}" th:text="${book.title}+${', '}"></span></td>
                             <td>
-                                <a class="btn btn-warning" th:href="@{/ShippingInfo/{id}(id=${order.id})}">View Info</a>
+                                <a class="btn btn-outline-primary" th:href="@{/ShippingInfo/{id}(id=${order.id})}">View Info</a>
                             </td>
                         </tr>
 

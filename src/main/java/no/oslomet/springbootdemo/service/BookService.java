@@ -25,7 +25,6 @@ public class BookService {
 
     public List<Book> search(String searchString){
         String search = searchString.toLowerCase();
-        System.out.println("Hello there, entered search!");
         return getAll().stream().filter(b -> b.getTitle().toLowerCase()
                 .contains(search))
                 .collect(Collectors.toList());

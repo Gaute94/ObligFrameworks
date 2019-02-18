@@ -220,7 +220,6 @@ public class HomeController {
 
     @GetMapping("/searchBooks")
     public String searchBooks(Model model){
-
         model.addAttribute("books", new ArrayList<Book>());
         return "searchBooks";
     }
