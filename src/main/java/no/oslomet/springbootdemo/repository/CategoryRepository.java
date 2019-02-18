@@ -1,6 +1,5 @@
 package no.oslomet.springbootdemo.repository;
 
-import no.oslomet.springbootdemo.model.Building;
 import no.oslomet.springbootdemo.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 

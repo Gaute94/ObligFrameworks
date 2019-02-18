@@ -17,9 +17,6 @@ import java.util.stream.Collectors;
 public class HomeController {
 
     @Autowired
-    private BuildingRepository buildingRepository;
-
-    @Autowired
     private AuthorRepository authorRepository;
 
     @Autowired
@@ -33,15 +30,6 @@ public class HomeController {
 
     @Autowired
     private OrderRepository orderRepository;
-
-    @GetMapping({"/", "/list"})
-    public String list(Model model ){
-        List<Building> buildings = buildingRepository.findAll();
-        model.addAttribute("buildings", buildings);
-        Building building = new Building();
-        model.addAttribute("building", building);
-        return "index";
-    }
 
     @GetMapping("/Book")
     public String listBooks(Model model){
@@ -128,11 +116,6 @@ public class HomeController {
         return "ShippingInfo";
     }
 
-    @PostMapping("/saveBuilding")
-    public String save(@ModelAttribute("building") Building building ){
-        buildingRepository.save(building);
-        return "redirect:/list";
-    }
 
     @PostMapping("/saveBook")
     public String save(@ModelAttribute("book") Book book ){
@@ -164,15 +147,6 @@ public class HomeController {
         return "redirect:/OrderHistory";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") String id,Model model ){
-        Building building  =this.buildingRepository.findById(Long.parseLong(id)).get();
-        List<Building> buildings = buildingRepository.findAll();
-        model.addAttribute("building", building );
-        model.addAttribute("buildings", buildings );
-
-        return "index";
-    }
 
     @GetMapping("/delete/{isbn}")
     public String deleteBook(@PathVariable String isbn){
@@ -218,7 +192,7 @@ public class HomeController {
         return "EditBook";
     }
 
-    @GetMapping("/searchBooks")
+    @GetMapping({"/", "/searchBooks"})
     public String searchBooks(Model model){
         model.addAttribute("books", new ArrayList<Book>());
         return "searchBooks";
